@@ -2,7 +2,7 @@
 const out = document.getElementById('output');
 
 function startPromiseChaining() {
-	const inputNum = document.getElementBbyId('ip').value;
+	const inputNum = document.getElementById('ip').value;
 
 	const firstPromise = new Promise((resolve) => {
 		setTimeout(() => {
@@ -12,5 +12,38 @@ function startPromiseChaining() {
 
 	firstPromise.then((res) => {
 		out.innerText = `Result: ${res}`;
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				out.innerText = `Result: ${res}`;
+				resolve(res*2);
+			}, 1000)
+		})
+	})
+	.then((res) => {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				out.innerText = `Result: ${res}`;
+				resolve(res-3);
+			}, 1000)
+		})
+	})
+	.then((res) => {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				out.innerText = `Result: ${res}`;
+				resolve(res+10);
+			}, 1000)
+		})
+	})
+	.then((res) => {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				out.innerText = `Final Result: ${res}`;
+			}, 1000)
+		})
 	})
 }
+
+
+
+
