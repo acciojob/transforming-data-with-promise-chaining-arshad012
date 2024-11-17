@@ -1,12 +1,14 @@
 //your JS code here. If required.
-const out = document.getElementById('output');
+const output = document.getElementById('output');
+const button = document.getElementById('btn');
 
 function startPromiseChaining() {
+	button.setAttribute('disabled', true);
 	const inputNum = document.getElementById('ip').value;
 
 	const firstPromise = new Promise((resolve) => {
 		setTimeout(() => {
-			out.innerText = `Result: ${inputNum}`;
+			output.innerText = `Result: ${inputNum}`;
 			resolve(inputNum);
 		},2000)
 	})
@@ -15,7 +17,7 @@ function startPromiseChaining() {
 		res *= 2;
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				out.innerText = `Result: ${res}`;
+				output.innerText = `Result: ${res}`;
 				resolve(res);
 			}, 1000)
 		})
@@ -24,7 +26,7 @@ function startPromiseChaining() {
 		res -= 3;
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				out.innerText = `Result: ${res}`;
+				output.innerText = `Result: ${res}`;
 				resolve(res);
 			}, 1000)
 		})
@@ -33,7 +35,7 @@ function startPromiseChaining() {
 		res /= 2;
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				out.innerText = `Result: ${res}`;
+				output.innerText = `Result: ${res}`;
 				resolve(res);
 			}, 1000)
 		})
@@ -42,13 +44,14 @@ function startPromiseChaining() {
 		res += 10;
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				out.innerText = `Result: ${res}`;
+				output.innerText = `Result: ${res}`;
 				resolve(res);
 			}, 1000)
 		})
 	})
 	.then((res) => {
-		out.innerText = `Final Result: ${res}`;
+		output.innerText = `Final Result: ${res}`;
+		button.removeAttribute('disabled');
 	})
 }
 
